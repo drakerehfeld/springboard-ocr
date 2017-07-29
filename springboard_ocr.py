@@ -4,6 +4,8 @@ import cv2
 #TODO: once pytesseract/#66 is merged, make this a normal import (using local custom version in meantime)
 from pytesseract_custom.src import pytesseract
 
+import pdb
+
 class SpringboardOcr():
 	def __init__(self, directory_path):
 		self.app_count = {}
@@ -14,11 +16,13 @@ class SpringboardOcr():
 
 	def process_all(self):
 		for screenshot in os.listdir(self.directory_path):
+			
+			if screenshot.startswith('.'):
+				continue
+
 			screenshot_path = os.path.join(self.directory_path, screenshot)
-			
 			screenshot_img = cv2.imread(screenshot_path)
-			screenshot_img = cv2.cvtColor(screenshot_img, cv2.COLOR_BGR2RGB)
-			
+
 			if self._text_is_white(screenshot_img):
 				mask = cv2.inRange(screenshot_img, (240,240,240), (255,255,255))
 			else:
