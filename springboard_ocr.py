@@ -24,11 +24,11 @@ class SpringboardOcr():
         else:
             raise ValueError("No directory path set")
 
-    def process_image_file(self, img_path):
+    def process_image_file(self, screenshot_path):
         screenshot_img = cv2.imread(screenshot_path)
         self.process_image_array(screenshot_img)
 
-    def process_image_array(self, image_arr):
+    def process_image_array(self, screenshot_img):
         if self._text_is_white(screenshot_img):
             mask = cv2.inRange(screenshot_img, (240,240,240), (255,255,255))
         else:
