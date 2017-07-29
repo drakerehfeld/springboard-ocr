@@ -11,7 +11,10 @@ class SpringboardOcr():
             raise ValueError("Invalid input directory")
         self.directory_path = directory_path
 
-    def process_all(self):
+    def process_all(self, directory_path=None):
+        if directory_path:
+            self.directory_path = directory_path
+
         if self.directory_path:
             for screenshot in os.listdir(self.directory_path):
                 if screenshot.startswith('.'):
