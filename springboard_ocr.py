@@ -26,7 +26,9 @@ class SpringboardOcr():
             else:
                 mask = cv2.inRange(screenshot_img, (0,0,0), (15,15,15))
 
-            self.increment_app_name(pytesseract.image_to_string(screenshot_img))
+            mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2RGB)
+            
+            self.increment_app_name(pytesseract.image_to_string(mask))
 
     def increment_app_name(self, detected_text):
         all_apps = detected_text.split()
