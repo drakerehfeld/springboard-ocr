@@ -26,10 +26,12 @@ class SpringboardOcr():
 
 			self.increment_app_name(pytesseract.image_to_string(screenshot_img))
 
-	def increment_app_name(self, app_name):
-		if app_name not in self.app_count:
-			self.app_count[app_name] = 0
-		self.app_count[app_name] += 1
+	def increment_app_name(self, detected_text):
+		all_apps = detected_text.split()
+		for app_name in all_apps:
+			if app_name not in self.app_count:
+				self.app_count[app_name] = 0
+			self.app_count[app_name] += 1
 			
 	def _text_is_white(self, screenshot):
 		average_color_per_row = np.average(screenshot, axis=0)
@@ -39,8 +41,3 @@ class SpringboardOcr():
 
 	def get_app_stats(self):
 		return self.app_count
-
-if __name__ == '__main__':
-	so = SpringboardOcr("test/")
-	so.process_all()
-	print(so.get_app_stats())
