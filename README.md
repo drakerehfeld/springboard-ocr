@@ -2,7 +2,7 @@
 Quick preprocessing of springboard screenshots to make OCR easy. Basically, the only novelty here is checking (or more accurately, guessing) whether the text will be black or white. A mask is made to try to get rid of the background colors, and then OCRed and results tallied. 
 
 # Usage & Example
-![img_4606](https://user-images.githubusercontent.com/7699842/28741061-61c35ea2-73c3-11e7-956c-7dbca18a995a.PNG)
+![img_4606](https://user-images.githubusercontent.com/7699842/28741061-61c35ea2-73c3-11e7-956c-7dbca18a995a.PNG  | width=200)
 ```
 from springboard_ocr import SpringboardOcr
 import json
